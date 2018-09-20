@@ -1,12 +1,20 @@
 package Niveles;
 
 import java.awt.Dimension;
+import javax.sound.sampled.Clip;
 import java.awt.Graphics;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Nivel extends javax.swing.JDialog {
+
+    public Clip clip;
+    public String ruta = "/Sonido/";
+    int contador = 1;
 
     public class Imagen1 extends javax.swing.JPanel {
 
@@ -50,6 +58,7 @@ public class Nivel extends javax.swing.JDialog {
             super.paintComponent(grafico);
         }
     }
+
     public void reinicio() {
         jPanel4.setEnabled(false);
         jPanel5.setEnabled(false);
@@ -59,6 +68,40 @@ public class Nivel extends javax.swing.JDialog {
     public Nivel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+    }
+
+    public void sonidoAcierto(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoReinicio(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoError(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -86,7 +129,7 @@ public class Nivel extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        numeroacierto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DIFERENCIAS");
@@ -102,18 +145,50 @@ public class Nivel extends javax.swing.JDialog {
                 jPanel4MouseMoved(evt);
             }
         });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
-        diferencia7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia7MouseClicked(evt);
+            }
+        });
 
-        diferencia9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia9MouseClicked(evt);
+            }
+        });
 
-        diferencia6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia6MouseClicked(evt);
+            }
+        });
 
-        diferencia8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia8.setEnabled(false);
+        diferencia8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia8MouseClicked(evt);
+            }
+        });
 
-        diferencia17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia17.setEnabled(false);
+        diferencia17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia17MouseClicked(evt);
+            }
+        });
 
-        diferencia18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia18.setEnabled(false);
+        diferencia18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia18MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,20 +248,53 @@ public class Nivel extends javax.swing.JDialog {
                 jPanel5MouseMoved(evt);
             }
         });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         icono1.setRequestFocusEnabled(false);
 
-        diferencia11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia11.setEnabled(false);
+        diferencia11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia11MouseClicked(evt);
+            }
+        });
 
-        diferencia10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia10MouseClicked(evt);
+            }
+        });
 
-        diferencia13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia13.setEnabled(false);
+        diferencia13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia13MouseClicked(evt);
+            }
+        });
 
         diferencia14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia14MouseClicked(evt);
+            }
+        });
 
-        diferencia15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia15.setEnabled(false);
+        diferencia15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia15MouseClicked(evt);
+            }
+        });
 
-        diferencia16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        diferencia16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diferencia16MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -236,7 +344,7 @@ public class Nivel extends javax.swing.JDialog {
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("ENCUENTRE LAS 5 DIFERENCIAS ");
+        jLabel1.setText("ENCUENTRE LAS 6 DIFERENCIAS ");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("MENU PRINCIPAL");
@@ -252,7 +360,7 @@ public class Nivel extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("DIFERENCIAS ENCONTRADAS");
 
-        jTextField1.setEditable(false);
+        numeroacierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,14 +381,13 @@ public class Nivel extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2)))
                 .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(numeroacierto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,8 +406,8 @@ public class Nivel extends javax.swing.JDialog {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addComponent(numeroacierto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,6 +453,91 @@ public class Nivel extends javax.swing.JDialog {
         jPanel5.repaint();
     }//GEN-LAST:event_jPanel5MouseMoved
 
+    private void diferencia13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia13MouseClicked
+        diferencia13.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/ta.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+
+    }//GEN-LAST:event_diferencia13MouseClicked
+
+    private void diferencia7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia7MouseClicked
+        diferencia13.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/ta.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia7MouseClicked
+
+    private void diferencia14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia14MouseClicked
+        diferencia8.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/jaja.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia14MouseClicked
+
+    private void diferencia8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia8MouseClicked
+        diferencia8.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/jaja.png")));     
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia8MouseClicked
+
+    private void diferencia11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia11MouseClicked
+        diferencia11.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/mosca_1.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia11MouseClicked
+
+    private void diferencia6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia6MouseClicked
+        diferencia11.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/mosca_1.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia6MouseClicked
+
+    private void diferencia15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia15MouseClicked
+        diferencia15.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/pel.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia15MouseClicked
+
+    private void diferencia9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia9MouseClicked
+        diferencia15.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/pel.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia9MouseClicked
+
+    private void diferencia10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia10MouseClicked
+        diferencia18.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/hojab.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia10MouseClicked
+
+    private void diferencia18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia18MouseClicked
+        diferencia18.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/hojab.png")));
+//        numeroacierto.setText("" + acierto++);
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia18MouseClicked
+
+    private void diferencia16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia16MouseClicked
+        diferencia17.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/talab.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia16MouseClicked
+
+    private void diferencia17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diferencia17MouseClicked
+        diferencia17.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/talab.png")));
+        sonidoAcierto("acierto");
+        JOptionPane.showMessageDialog(this, "Encontro la diferencia");
+    }//GEN-LAST:event_diferencia17MouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+
+        sonidoError("error");
+        JOptionPane.showMessageDialog(this, "ERROR NO HAY DIFERENCIAS");
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        sonidoError("error");
+        JOptionPane.showMessageDialog(this, "ERROR NO HAY DIFERENCIAS");
+    }//GEN-LAST:event_jPanel5MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel diferencia10;
     private javax.swing.JLabel diferencia11;
@@ -368,6 +560,6 @@ public class Nivel extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel numeroacierto;
     // End of variables declaration//GEN-END:variables
 }
