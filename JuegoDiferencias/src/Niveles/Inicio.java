@@ -13,6 +13,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
    
